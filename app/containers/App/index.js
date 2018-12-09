@@ -6,6 +6,7 @@ import PillForm from '../PillForm';
 import PillList from '../PillList';
 import Pill from '../Pill';
 import PillChangeForm from '../PillChangeForm';
+import Appointments from '../Appointments';
 
 
 
@@ -24,6 +25,9 @@ const AppNavigator = createStackNavigator({
   },
   PillChangeForm: {
     screen: PillChangeForm
+  },
+  Appointments: {
+    screen: Appointments
   },
   initialRouteName: "Menu"
 });

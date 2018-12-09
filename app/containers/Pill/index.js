@@ -25,7 +25,7 @@ export default class Pill extends Component {
   const { navigation } = this.props;
   const pill = navigation.getParam('pill', "");
 
-  const request = new Request('https://3354b00c.ngrok.io/farmacy/pill', {
+  const request = new Request('https://5b1c0310.ngrok.io/farmacy/pill', {
     method: 'DELETE',
     headers: {
       "Content-Type": "application/json; charset=utf-8",
