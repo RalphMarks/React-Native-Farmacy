@@ -10,7 +10,7 @@ export default class PillList extends Component {
   }
 
   componentDidMount() {
-    const request = new Request('https://3354b00c.ngrok.io/farmacy/pill', {method: 'GET'});
+    const request = new Request('https://5b1c0310.ngrok.io/farmacy/pill', {method: 'GET'});
 
     fetch(request)
       .then(response => response.json())

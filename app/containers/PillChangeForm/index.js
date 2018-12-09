@@ -26,7 +26,7 @@ errorAlert = () => {
 
 
  changePill(params) {
-  const request = new Request('https://3354b00c.ngrok.io/farmacy/pill', {
+  const request = new Request('https://5b1c0310.ngrok.io/farmacy/pill', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json; charset=utf-8",

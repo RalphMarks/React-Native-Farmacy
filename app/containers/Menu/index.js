@@ -9,6 +9,7 @@ export default class Menu extends React.Component {
       <View>
         <Button title='Crear Pill' onPress={() => this.props.navigation.navigate('PillForm')} />
         <Button title='Ver Pills' onPress={() => this.props.navigation.navigate('PillList')} />
+        <Button title='Calendario' onPress={() => this.props.navigation.navigate('Appointments')} />
         <Button title='Ver Farmacias'/>
       </View>
     );
