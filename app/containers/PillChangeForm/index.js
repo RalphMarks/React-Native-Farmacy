@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Picker, Alert } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Picker, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik, setFieldValue } from 'formik'
 
 
+
+const styles = StyleSheet.create({
+  view: {
+    padding: "10px"
+  },
+  bold: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginLeft: 10
+  },
+  normal: {
+    fontSize: 18,
+    marginLeft: 15
+  },
+});
+
 export default class PillChangeForm extends Component {
+
+  static navigationOptions = {
+    title: 'Cambiar Pill',
+  };
 
  constructor(props) {
    super(props);
@@ -26,7 +46,7 @@ errorAlert = () => {
 
 
  changePill(params) {
-  const request = new Request('https://5b1c0310.ngrok.io/farmacy/pill', {
+  const request = new Request('https://963d7874.ngrok.io/farmacy/pill', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -55,28 +75,30 @@ errorAlert = () => {
   const pill = navigation.getParam('pill', "");
 
    return(
-    <View>
-      <Text>Change Pill</Text>
-      
-
-       <Formik
-      initialValues={{ name: pill.name, illness: pill.illness, doctor: pill.doctor, period: pill.period, hours: pill.hours}}
-      onSubmit={this.changePill}
-    >
+    <View style={{margin: 16}}>
+    
+      <Formik
+        initialValues={{ name: pill.name, illness: pill.illness, doctor: pill.doctor, period: pill.period, hours: pill.hours}}
+        onSubmit={this.changePill}
+      >
       {props => (
         <View>
+          <Text style={styles.bold}>Nombre:</Text>
           <TextInput
             onChangeText={props.handleChange('name')}
             placeholder="Nombre del Medicamento"
             onBlur={props.handleBlur('name')}
             value={props.values.name}
           />
+          <Text style={styles.bold}>Combate:</Text>
           <TextInput
             onChangeText={props.handleChange('illness')}
             placeholder="Para combatir..."
             onBlur={props.handleBlur('illness')}
             value={props.values.illness}
           />
+          
+          <Text style={styles.bold}>Horas entre cada dosis:</Text>
           <Picker
           selectedValue={props.values.hours}
           style={{ height: 50, width: 200 }}
@@ -92,6 +114,7 @@ errorAlert = () => {
           <Picker.Item label="cada 24 horas" value="24" />
         </Picker>
 
+        <Text style={styles.bold}>Dias que dura el tratamiento:</Text>
         <Picker
           selectedValue={props.values.period}
           style={{ height: 50, width: 200 }}
@@ -105,6 +128,7 @@ errorAlert = () => {
           <Picker.Item label="30 d" value="30" />
         </Picker>
 
+          <Text style={styles.bold}>Doctor que receto el medicamento:</Text>
           <TextInput
             onChangeText={props.handleChange('doctor')}
             placeholder="Recetada Por"

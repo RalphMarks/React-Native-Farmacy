@@ -15,7 +15,8 @@ const AppNavigator = createStackNavigator({
     screen: Menu,
   },
   PillForm: {
-    screen: PillForm
+    screen: PillForm,
+    name: "PILLFORM"
   },
   PillList: {
     screen: PillList

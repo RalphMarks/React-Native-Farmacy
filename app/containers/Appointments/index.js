@@ -4,13 +4,18 @@ import { List, ListItem, ThemeProvider } from 'react-native-elements'
 
 export default class Appointments extends React.Component {
 
+  static navigationOptions = {
+    title: 'Calendario',
+  };
+
+
   constructor() {
     super();
     this.state = {lis: []}
   }
 
   componentDidMount() {
-    const request = new Request('https://5b1c0310.ngrok.io/farmacy/appointments', {method: 'GET'});
+    const request = new Request('https://963d7874.ngrok.io/farmacy/appointments', {method: 'GET'});
 
     fetch(request)
       .then(response => response.json())

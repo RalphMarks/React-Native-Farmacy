@@ -4,13 +4,17 @@ import { List, ListItem, ThemeProvider } from 'react-native-elements'
 
 export default class PillList extends Component {
 
+  static navigationOptions = {
+    title: 'Pills',
+  };
+
   constructor() {
     super();
     this.state = {pills: []}
   }
 
   componentDidMount() {
-    const request = new Request('https://5b1c0310.ngrok.io/farmacy/pill', {method: 'GET'});
+    const request = new Request('https://963d7874.ngrok.io/farmacy/pill', {method: 'GET'});
 
     fetch(request)
       .then(response => response.json())

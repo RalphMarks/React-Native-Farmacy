@@ -1,9 +1,30 @@
 import React, { Component } from 'react';
-import { Text, View, Alert } from 'react-native';
+import { Text, View, Alert, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements'
 
 
+const styles = StyleSheet.create({
+  view: {
+    padding: "10px"
+  },
+  bold: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginLeft: 10
+  },
+  normal: {
+    fontSize: 18,
+    marginLeft: 15
+  },
+});
+
 export default class Pill extends Component {
+
+  static navigationOptions = {
+    title: 'Detalles',
+  };
+
+
  constructor() {
    super();
    this.deletePill = this.deletePill.bind(this);
@@ -25,7 +46,7 @@ export default class Pill extends Component {
   const { navigation } = this.props;
   const pill = navigation.getParam('pill', "");
 
-  const request = new Request('https://5b1c0310.ngrok.io/farmacy/pill', {
+  const request = new Request('https://963d7874.ngrok.io/farmacy/pill', {
     method: 'DELETE',
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -55,22 +76,38 @@ export default class Pill extends Component {
 
    return(
     <View>
-      <Text>Pill</Text>
-      <Text> {pill.name} </Text>
-      <Text> {pill.illness} </Text>
-      <Text> {pill.hours} </Text>
-      <Text> {pill.period} </Text>
-      <Text> {pill.doctor} </Text>
+      <View style={{marginBottom: 32, marginTop: 32}}>
+        <Text style={styles.bold}>Nombre:</Text>
+        <Text style={styles.normal}> {pill.name} </Text>
 
-      <Button
-        small raised
-        title='Cambiar' onPress={() => this.props.navigation.navigate('PillChangeForm', {
-          pill: pill
-        })}/>
+        <Text style={styles.bold}>Combate:</Text>
+        <Text style={styles.normal}> {pill.illness} </Text>
 
-      <Button
-        small raised
-        title='Eliminar' onPress={this.deletePill}/>
+        <Text style={styles.bold}>Se debe consumir cada:</Text>
+        <Text style={styles.normal}> {pill.hours} horas </Text>
+
+        <Text style={styles.bold}>Se debe consumir durante:</Text>
+        <Text style={styles.normal}> {pill.period} dias </Text>
+
+        <Text style={styles.bold}>Pill resetada por:</Text>
+        <Text style={styles.normal}> {pill.doctor} </Text>
+      </View>
+
+      
+      <View style={{marginLeft: 24, marginRight: 24, marginTop: 16}}>
+        <Button
+          small raised
+          title='Cambiar' onPress={() => this.props.navigation.navigate('PillChangeForm', {
+            pill: pill
+          })}/>
+      </View>
+
+      <View style={{marginLeft: 24, marginRight: 24, marginTop: 16}}>
+        <Button
+          small raised
+          title='Eliminar' onPress={this.deletePill}/>
+      </View>
+
     </View> 
    );
  }

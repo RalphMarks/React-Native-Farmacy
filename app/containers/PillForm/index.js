@@ -1,9 +1,29 @@
 // Formik x React Native example
 import React from 'react';
-import { Alert, Button, TextInput, View, Picker } from 'react-native';
+import { Alert, Button, Text, TextInput, View, Picker, StyleSheet } from 'react-native';
 import { Formik, setFieldValue } from 'formik';
 
+
+const styles = StyleSheet.create({
+  view: {
+    padding: "10px"
+  },
+  bold: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginLeft: 10
+  },
+  normal: {
+    fontSize: 18,
+    marginLeft: 15
+  },
+});
 export default class PillForm extends React.Component {
+
+
+  static navigationOptions = {
+    title: 'Crear Pill',
+  };
 
   constructor(props) {
     super(props);
@@ -24,7 +44,7 @@ export default class PillForm extends React.Component {
   
 
   createPill(params) {
-    const request = new Request('https://5b1c0310.ngrok.io/farmacy/pill/new', {
+    const request = new Request('https://963d7874.ngrok.io/farmacy/pill/new', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -55,19 +75,22 @@ export default class PillForm extends React.Component {
       onSubmit={this.createPill}
     >
       {props => (
-        <View>
+        <View style={{margin: 16}}>
+          <Text style={styles.bold}>Nombre:</Text>
           <TextInput
             onChangeText={props.handleChange('name')}
             placeholder="Nombre del Medicamento"
             onBlur={props.handleBlur('name')}
             value={props.values.name}
           />
+          <Text style={styles.bold}>Combate:</Text>
           <TextInput
             onChangeText={props.handleChange('illness')}
             placeholder="Para combatir..."
             onBlur={props.handleBlur('illness')}
             value={props.values.illness}
           />
+          <Text style={styles.bold}>Horas entre cada dosis:</Text>
           <Picker
           selectedValue={props.values.hours}
           style={{ height: 50, width: 200 }}
@@ -83,6 +106,7 @@ export default class PillForm extends React.Component {
           <Picker.Item label="cada 24 horas" value="24" />
         </Picker>
 
+        <Text style={styles.bold}>Dias que dura el tratamiento:</Text>
         <Picker
           selectedValue={props.values.period}
           style={{ height: 50, width: 200 }}
@@ -93,15 +117,16 @@ export default class PillForm extends React.Component {
           <Picker.Item label="7 dias" value="7" />
           <Picker.Item label="10 dias" value="10" />
           <Picker.Item label="15 dias" value="15" />
-          <Picker.Item label="30 d" value="30" />
+          <Picker.Item label="30 dias" value="30" />
         </Picker>
 
-          <TextInput
-            onChangeText={props.handleChange('doctor')}
-            placeholder="Recetada Por"
-            onBlur={props.handleBlur('doctor')}
-            value={props.values.doctor}
-          />
+        <Text style={styles.bold}>Doctor que receto el medicamento:</Text>
+        <TextInput
+          onChangeText={props.handleChange('doctor')}
+          placeholder="Recetada Por"
+          onBlur={props.handleBlur('doctor')}
+          value={props.values.doctor}
+        />
 
   
   
